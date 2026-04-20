@@ -1,3 +1,10 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { GroupsComponent } from './groups/groups.component';
+import { GradingComponent } from './grading/grading.component';
+import { PreparationComponent } from './preparation/preparation.component';
+export const routes: Routes = [
+  { path: '', redirectTo: 'groups', pathMatch: 'full' },
+  { path: 'groups', component: GroupsComponent },
+  { path: 'grading', component: GradingComponent },
+  { path: 'preparation', component: PreparationComponent },
+];

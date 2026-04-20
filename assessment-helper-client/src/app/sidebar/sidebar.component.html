@@ -5,7 +5,7 @@
     </button>
     @if (!isSidebarCollapsed()) {
       <div class="logo-text">CFHelper</div>
-      <button class="btn-close">
+      <button class="btn-close" (click)="toggleCollapse()">
         <i class="fa-solid fa-xmark" style="color: rgb(255, 255, 255);"></i>
       </button>
     }

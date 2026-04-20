@@ -189,7 +189,10 @@
   (changeIsSidebarCollapsed)="changeIsSidebarCollapsed($event)"
 />
 
-<app-main />
+<app-main
+  [isSidebarCollapsed]="isSidebarCollapsed()"
+  [screenWidth]="screenWidth()"
+/>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
