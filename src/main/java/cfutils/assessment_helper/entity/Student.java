@@ -6,18 +6,36 @@ import org.springframework.stereotype.Component;
 @Component
 @Scope("prototype")
 public class Student {
-    private String groupId;
+    private int groupId;
+    private int id;
     private String firstName;
     private String lastName;
     private String patronymic;
     private String email;
 
-    public String getGroupId() {
+    public Student(int groupId, int id, String firstName, String lastName, String patronymic, String email) {
+        this.groupId = groupId;
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.email = email;
+    }
+
+    public int getGroupId() {
         return groupId;
     }
 
-    public void setGroupId(String groupId) {
+    public void setGroupId(int groupId) {
         this.groupId = groupId;
+    }
+
+    public int getId() {
+        return groupId;
+    }
+
+    public void setId(int id) {
+        this.groupId = id;
     }
 
     public String getFirstName() {
@@ -50,16 +68,5 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "groupId='" + groupId + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", patronymic='" + patronymic + '\'' +
-                ", email='" + email + '\'' +
-                '}';
     }
 }
