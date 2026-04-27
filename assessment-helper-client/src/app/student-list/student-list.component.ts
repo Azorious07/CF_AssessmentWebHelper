@@ -4,42 +4,41 @@ import { StudentService } from '../classes/StudentService';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { BehaviorSubject, map, Observable, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-student-list',
-  templateUrl: './student-list.component.html',
-  imports: [RouterModule, CommonModule],
-  styleUrl: './student-list.component.css'
+    selector: 'app-student-list',
+    templateUrl: './student-list.component.html',
+    imports: [RouterModule, CommonModule],
+    styleUrl: './student-list.component.css'
 })
 export class StudentListComponent implements OnInit {
+    students$: BehaviorSubject<Student[]> = new BehaviorSubject<Student[]>([]);
 
-  students: Student[] = [];
+    constructor(private studentService: StudentService, private router: Router) { }
 
-  constructor(private studentService: StudentService,
-    private router: Router) { }
+    ngOnInit(): void {
+        this.getStudents();
+    }
 
-  ngOnInit(): void {
-    this.getStudents();
-  }
+    getStudents() {
+        this.studentService.getStudentsList().subscribe((value) => {
+            this.students$.next(value);
+        });
+    }
 
-  getStudents(){
-    this.studentService.getStudentsList().subscribe(data => {
-      this.students = data;
-    });
-  }
+    //   updateStudent(id: number){
+    //     this.router.navigate(['update-student', id]);
+    //   }
 
-  studentDetails(id: number){
-    this.router.navigate(['student-details', id]);
-  }
-
-  updateStudent(id: number){
-    this.router.navigate(['update-student', id]);
-  }
-
-  deleteStudent(id: number){
-    this.studentService.deleteStudent(id).subscribe( data => {
-      console.log(data);
-      this.getStudents();
-    })
-  }
+    deleteStudent(id: number) {
+        this.studentService.deleteStudent(id).subscribe(() => {
+            this.studentService.getStudentsList().subscribe((value) => {
+                this.students$.next(value);
+            });
+        });
+    }
+    trackByFn(index: number, item: any) {
+        return item.id;
+    }
 }

@@ -32,7 +32,7 @@ public class StudentDao {
 
     public Student findById(int id) {
         List<Student> students = jdbcTemplate.query(
-                "SELECT * FROM students WHERE group_id = ?",
+                "SELECT * FROM students WHERE id = ?",
                 (resultSet, rowNumber) ->
                         new Student(
                                 resultSet.getInt("group_id"),

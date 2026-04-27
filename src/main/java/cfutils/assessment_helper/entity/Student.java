@@ -31,11 +31,11 @@ public class Student {
     }
 
     public int getId() {
-        return groupId;
+        return id;
     }
 
     public void setId(int id) {
-        this.groupId = id;
+        this.id = id;
     }
 
     public String getFirstName() {

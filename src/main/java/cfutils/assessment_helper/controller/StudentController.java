@@ -37,6 +37,7 @@ public class StudentController {
     @DeleteMapping("/students/{id}")
     public void deleteStudent(@PathVariable int id){
         Student student = studentDao.findById(id);
+        //TODO validate deletion
         studentDao.deleteStudentById(id);
     }
 
