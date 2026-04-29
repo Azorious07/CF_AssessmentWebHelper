@@ -1,7 +1,6 @@
-package cfutils.assessment_helper.repository;
+package cfutils.assessment_helper.dao;
 
-import cfutils.assessment_helper.entity.Student;
-import cfutils.assessment_helper.entity.StudentGroup;
+import cfutils.assessment_helper.entity.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -17,27 +16,28 @@ public class GroupDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public void addGroup(StudentGroup studentGroup) {
+    public void addGroup(Group group) {
         jdbcTemplate.update(
-                "INSERT INTO groups(id, user_id) VALUES (?, ?)",
-                studentGroup.getId(), studentGroup.getUserId()
+                "INSERT INTO groups(user_id) VALUES (?)",
+                group.getUserId()
         );
     }
 
-    public void deleteGroup(int id) {
+    public void deleteGroupById(int id) {
         jdbcTemplate.update("DELETE FROM groups WHERE id = ?", id);
     }
 
-    public List<StudentGroup> getAllGroupsOfUser(int userId) {
-        List<StudentGroup> students = jdbcTemplate.query(
+    public List<Group> getAllGroupsOfUser(int userId) {
+        List<Group> groups = jdbcTemplate.query(
                 "SELECT * FROM groups WHERE user_id = ?",
                 (resultSet, rowNumber) ->
-                        new StudentGroup(
+                        new Group(
                                 resultSet.getInt("id"),
-                                resultSet.getInt("user_id")
-                        ), userId
+                                resultSet.getInt("user_id"),
+                                resultSet.getString("name")
+                        ), 1//change when added users
         );
 
-        return students;
+        return groups;
     }
 }

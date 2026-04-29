@@ -1,28 +1,28 @@
 <div class="shadow-lg rounded-lg overflow-hidden mx-4 md:mx-10">
-  <table class="w-full table-fixed">
-    <thead>
-    <tr class="bg-gray-100">
-      <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Имя</th>
-      <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Фамилия</th>
-      <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Отчество</th>
-      <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Email</th>
-      <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase"></th>
-    </tr>
-    </thead>
-    <tbody class="bg-white">
-    <tr *ngFor = "let student of students$ | async; trackBy: trackByFn">
-      <td class="py-4 px-6 border-b border-gray-200 truncate"> {{ student.firstName }} </td>
-      <td class="py-4 px-6 border-b border-gray-200 truncate"> {{ student.lastName }} </td>
-      <td class="py-4 px-6 border-b border-gray-200 truncate"> {{ student.patronymic }} </td>
-      <td class="py-4 px-6 border-b border-gray-200 truncate"> {{ student.email }} </td>
-      <td class="py-4 px-6 border-b border-gray-200 truncate">
-        <!--      <button (click) = "updateStudent(employee.id)" class = "btn btn-primary"> Update</button>-->
-        <button class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none
+    <table class="w-full table-fixed">
+        <thead>
+        <tr class="bg-gray-100">
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Имя</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Фамилия</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Отчество</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase">Email</th>
+            <th class="w-1/4 py-4 px-6 text-left text-gray-600 font-bold uppercase"></th>
+        </tr>
+        </thead>
+        <tbody class="bg-white">
+        <tr *ngFor="let student of students$ | async; trackBy: trackByFn">
+            <td class="py-4 px-6 border-b border-gray-200 truncate"> {{ student.firstName }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate"> {{ student.lastName }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate"> {{ student.patronymic }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate"> {{ student.email }}</td>
+            <td class="py-4 px-6 border-b border-gray-200 truncate">
+                <!--      <button (click) = "updateStudent(employee.id)" class = "btn btn-primary"> Update</button>-->
+                <button class="ml-2 px-4 py-2 font-medium text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none
                        focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out"
-                (click) = "deleteStudent(student.id)"> Удалить </button>
-      </td>
-    </tr>
-
-    </tbody>
-  </table>
+                        (click)="deleteStudent(student.id)"> Удалить
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>

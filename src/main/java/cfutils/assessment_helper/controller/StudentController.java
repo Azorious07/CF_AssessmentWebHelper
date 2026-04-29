@@ -1,10 +1,8 @@
 package cfutils.assessment_helper.controller;
 
 import cfutils.assessment_helper.entity.Student;
-import cfutils.assessment_helper.exception.ResourceNotFoundException;
-import cfutils.assessment_helper.repository.StudentDao;
+import cfutils.assessment_helper.dao.StudentDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

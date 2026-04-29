@@ -1,4 +1,4 @@
-package cfutils.assessment_helper.repository;
+package cfutils.assessment_helper.dao;
 
 import cfutils.assessment_helper.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;

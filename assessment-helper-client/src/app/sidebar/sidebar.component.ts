@@ -19,6 +19,11 @@ export class SidebarComponent {
       label: 'Группы',
     },
     {
+      routeLink: 'students',
+      icon: 'fa-solid fa-person',
+      label: 'Студенты',
+    },
+    {
       routeLink: 'preparation',
       icon: 'fa-solid fa-briefcase',
       label: 'Подготовка',
