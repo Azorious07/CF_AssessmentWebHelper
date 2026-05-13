@@ -25,6 +25,7 @@ public class GroupDao {
 
     public void deleteGroupById(int id) {
         jdbcTemplate.update("DELETE FROM groups WHERE id = ?", id);
+        jdbcTemplate.update("DELETE FROM students WHERE group_id = ?", id);
     }
 
     public List<Group> getAllGroupsOfUser(int userId) {

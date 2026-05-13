@@ -14,7 +14,6 @@ public class StudentController {
     @Autowired
     private StudentDao studentDao;
 
-    //@GetMapping("/students/group{id}")
     @GetMapping("/students/group{id}")
     public List<Student> getAllStudents(@PathVariable int id){
         return studentDao.getAllStudentsFromGroup(id);

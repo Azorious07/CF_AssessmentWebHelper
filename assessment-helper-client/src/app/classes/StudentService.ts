@@ -16,6 +16,10 @@ export class StudentService {
         return this.httpClient.get<Student[]>(`${this.baseURL}`);
     }
 
+    getStudentsByGroupList(groupId: number | undefined): Observable<Student[]> {
+        return this.httpClient.get<Student[]>(`${this.baseURL + '/group' + groupId}`);
+    }
+
     createStudent(student: Student): Observable<Object> {
         return this.httpClient.post(`${this.baseURL}`, student);
     }

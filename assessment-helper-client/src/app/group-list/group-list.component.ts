@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { GroupService } from '../classes/GroupService';
 import { Dialog } from '@angular/cdk/dialog';
 import { CreateGroupDialog } from '../create-group-dialog/create-group-dialog';
+import { StudentService } from '../classes/StudentService';
 
 @Component({
     selector: 'app-student-groups',
@@ -19,7 +20,7 @@ import { CreateGroupDialog } from '../create-group-dialog/create-group-dialog';
 export class GroupListComponent implements OnInit {
     groups$: BehaviorSubject<Group[]> = new BehaviorSubject<Group[]>([]);
     private dialog = inject(Dialog);
-    constructor(private groupService: GroupService, private router: Router) { }
+    constructor(private groupService: GroupService, private studentService: StudentService) { }
 
     ngOnInit(): void {
         this.getGroups();
@@ -37,6 +38,7 @@ export class GroupListComponent implements OnInit {
                         this.groups$.next(value);
                     });
                 });
+        //this.studentService.
     }
 
     openCreateDialog() {
