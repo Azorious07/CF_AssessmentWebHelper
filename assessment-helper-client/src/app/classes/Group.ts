@@ -1,9 +1,8 @@
 export class Group {
-  id: number;
+  id!: number;
   userId: number;
   name: string;
-  constructor(_id: number, _userId: number, _name: string) {
-      this.id = _id;
+  constructor(_userId: number, _name: string) {
       this.userId = _userId;
       this.name = _name;
   }

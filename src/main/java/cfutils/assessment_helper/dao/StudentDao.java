@@ -18,8 +18,8 @@ public class StudentDao {
 
     public void addStudent(Student student) {
         jdbcTemplate.update(
-                "INSERT INTO students(group_id, id, first_name, last_name, patronymic, email) VALUES (?, ?, ?, ?, ?, ?)",
-                student.getGroupId(), student.getId(), student.getFirstName(), student.getLastName(),
+                "INSERT INTO students(group_id, first_name, last_name, patronymic, email) VALUES (?, ?, ?, ?, ?)",
+                student.getGroupId(), student.getFirstName(), student.getLastName(),
                 student.getPatronymic(), student.getEmail()
         );
     }
@@ -52,8 +52,8 @@ public class StudentDao {
                 "SELECT * FROM students WHERE group_id = ?",
                 (resultSet, rowNumber) ->
                         new Student(
-                                resultSet.getInt("group_id"),
                                 resultSet.getInt("id"),
+                                resultSet.getInt("group_id"),
                                 resultSet.getString("first_name"),
                                 resultSet.getString("last_name"),
                                 resultSet.getString("patronymic"),

@@ -16,7 +16,7 @@ public class GroupController {
     private GroupDao groupDao;
 
     @GetMapping("/groups")
-    public List<Group> getAllGroups(){
+    public List<Group> getAllGroups() {
         return groupDao.getAllGroupsOfUser(1);
     }
 
@@ -26,7 +26,7 @@ public class GroupController {
     }
 
     @DeleteMapping("/groups/{id}")
-    public void deleteGroup(@PathVariable int id){
+    public void deleteGroup(@PathVariable int id) {
         groupDao.deleteGroupById(id);
     }
 }

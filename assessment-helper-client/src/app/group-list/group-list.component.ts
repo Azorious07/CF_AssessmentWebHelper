@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
@@ -10,17 +9,18 @@ import { GroupService } from '../classes/GroupService';
 import { Dialog } from '@angular/cdk/dialog';
 import { CreateGroupDialog } from '../create-group-dialog/create-group-dialog';
 import { StudentService } from '../classes/StudentService';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
     selector: 'app-student-groups',
     templateUrl: './group-list.component.html',
-    imports: [RouterModule, CommonModule, SelectButtonModule, FormsModule, CreateGroupDialog],
+    imports: [RouterModule, CommonModule, SelectButtonModule, FormsModule],
     styleUrl: './group-list.component.css'
 })
 export class GroupListComponent implements OnInit {
     groups$: BehaviorSubject<Group[]> = new BehaviorSubject<Group[]>([]);
-    private dialog = inject(Dialog);
-    constructor(private groupService: GroupService, private studentService: StudentService) { }
+    private groupCreateDialog = inject(Dialog);
+    constructor(private groupService: GroupService, public dialog: Dialog) { }
 
     ngOnInit(): void {
         this.getGroups();
@@ -34,15 +34,19 @@ export class GroupListComponent implements OnInit {
 
     deleteGroup(id: number) {
         this.groupService.deleteGroup(id).subscribe(() => {
-                    this.groupService.getGroupsList().subscribe((value) => {
-                        this.groups$.next(value);
-                    });
-                });
-        //this.studentService.
+            this.groupService.getGroupsList().subscribe((value) => {
+                this.groups$.next(value);
+            });
+        });
     }
 
     openCreateDialog() {
-        this.dialog.open(CreateGroupDialog);
+        const dialogRef = this.dialog.open(CreateGroupDialog);
+        dialogRef.closed.subscribe((result) => {
+            if (result) {
+                this.getGroups();
+            }
+        });
     }
 
     trackByFn(index: number, item: any) {

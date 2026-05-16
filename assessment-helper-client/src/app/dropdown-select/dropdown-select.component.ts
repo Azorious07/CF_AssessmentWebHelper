@@ -21,7 +21,7 @@ export class GroupDropdownSelectComponent implements OnInit {
     constructor(private elementRef: ElementRef) { }
 
     ngOnInit(): void {
-        this.selectedItem = new Group(-1, -1, this.placeholder);
+        this.selectedItem = new Group(-1, this.placeholder);
     }
 
     toggle() {

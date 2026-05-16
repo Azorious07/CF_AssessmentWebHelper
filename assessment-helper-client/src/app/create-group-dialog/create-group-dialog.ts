@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { GroupService } from '../classes/GroupService';
 import { Group } from '../classes/Group'
 import { FormsModule } from '@angular/forms';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Component({
     selector: 'app-create-group-dialog',
@@ -10,12 +11,21 @@ import { FormsModule } from '@angular/forms';
     styleUrl: './create-group-dialog.css',
 })
 export class CreateGroupDialog {
-    groupNameInput: string = '';
+    nameInput: string = '';
+    private dialogRef = inject(DialogRef);
     constructor(private groupService: GroupService) {}
-    addGroup(name: string): void {
-        if (this.groupNameInput != '') {
-            console.log(this.groupNameInput);
-            this.groupService.createGroup(new Group(1, 1, name));
+    addGroup(): void {
+            if (this.nameInput.trim()) {
+                this.groupService.createGroup(new Group(1, this.nameInput)).subscribe({
+                    next: () => {
+                        this.dialogRef.close(true);
+                    }
+                });
+            }
+            this.nameInput = '';
         }
-    }
+
+        cancel(): void {
+            this.dialogRef.close(false);
+        }
 }

@@ -13,9 +13,20 @@ public class Student {
     private String patronymic;
     private String email;
 
-    public Student(int groupId, int id, String firstName, String lastName, String patronymic, String email) {
+    public Student() {}
+
+    public Student(int groupId, String firstName, String lastName, String patronymic, String email) {
+        this.id = -1;
         this.groupId = groupId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.patronymic = patronymic;
+        this.email = email;
+    }
+
+    public Student(int id, int groupId, String firstName, String lastName, String patronymic, String email) {
         this.id = id;
+        this.groupId = groupId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.patronymic = patronymic;

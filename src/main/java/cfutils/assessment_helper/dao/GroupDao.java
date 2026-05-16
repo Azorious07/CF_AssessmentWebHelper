@@ -18,8 +18,8 @@ public class GroupDao {
 
     public void addGroup(Group group) {
         jdbcTemplate.update(
-                "INSERT INTO groups(user_id) VALUES (?)",
-                group.getUserId()
+                "INSERT INTO groups(user_id, name) VALUES (?, ?)",
+                group.getUserId(), group.getName()
         );
     }
 
@@ -36,7 +36,7 @@ public class GroupDao {
                                 resultSet.getInt("id"),
                                 resultSet.getInt("user_id"),
                                 resultSet.getString("name")
-                        ), 1//change when added users
+                        ), 1//TODO change when added users
         );
 
         return groups;
